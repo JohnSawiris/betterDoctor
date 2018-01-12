@@ -17,7 +17,7 @@ var lib = require('bower-files')({
 });
 
 gulp.task('jsBrowserify', function() {
-  return browserify({ entries: ['./js/finterface.js', './js/backend.hs'] })
+  return browserify({ entries: ['./js/interface.js', './js/backend.js'] })
   .transform(babelify.configure({
     presets: ['es2015']
   }))
