@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="build/css/vendor.css">
+    <link rel="stylesheet" href="build/css/main.css">
     <script src="build/js/vendor.min.js"></script>
     <script src="build/js/app.js"></script>
     <title>Better Doctor</title>
@@ -14,6 +15,14 @@
         <div class="form-group">
           <label>Medical Issue:</label>
           <input type="text" class="form-control" id="medical-issue">
+          <label>Doctor's Name:</label>
+          <input type="text" class="form-control" id="doctor-name">
+          <label>Location</label>
+          <select id="location" class="form-control" name="location">
+            <option value="">Select a city</option>
+            <option value="or-portland">Portland - Oregon</option>
+            <option value="wa-seattle">Seattle - Washington</option>
+          </select>
           <button type="submit" class="btn btn-danger" name="button">Submit</button>
         </div>
       </form>

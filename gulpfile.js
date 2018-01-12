@@ -6,6 +6,9 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var jshint = require('gulp-jshint');
+var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
+var browserSync = require('browser-sync');
 var lib = require('bower-files')({
   "overrides":{
     "bootstrap" : {
@@ -18,7 +21,7 @@ var lib = require('bower-files')({
   }
 });
 
-gulp.task('jsBrowserify', function() {
+gulp.task('jsBrowserify', ['cssBuild'], function() {
   return browserify({ entries: ['./js/interface.js', './js/backend.js'] })
   .transform(babelify.configure({
     presets: ['es2015']
@@ -42,3 +45,14 @@ gulp.task('bowerCSS', function() {
 });
 
 gulp.task('bower', ['bowerJS', 'bowerCSS']);
+
+gulp.task('cssBuild', function() {
+  return gulp.src('scss/*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./build/css'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('build', ['jsBrowserify', 'cssBuild']);
