@@ -1,12 +1,35 @@
-.bold {
-  font-weight: bold;
+@mixin center($width) {
+  width: $width;
+  margin: 0 auto;
+}
+
+form#doctor {
+  @include center(50%);
+  .btn-danger {
+    margin-top: 10px;
+  }
+}
+
+#output {
+  @include center(90%);
+  padding: 1rem;
 }
 
 .info {
-  width: 40%;
+  display: flex;
+  width: 60%;
   margin: 1em auto;
   border: 1px solid #000;
   padding: 1em;
   border-radius: 5px;
   box-shadow: 2px 4px 12px #aaa;
+  .doc-info {
+    margin-right: 20px;
+    .bold {
+      font-weight: bold;
+    }
+  }
+  img {
+    max-width: 100%;
+  }
 }
