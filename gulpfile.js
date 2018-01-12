@@ -4,6 +4,8 @@ var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
+var sass = require('gulp-sass');
+var jshint = require('gulp-jshint');
 var lib = require('bower-files')({
   "overrides":{
     "bootstrap" : {
