@@ -4,7 +4,8 @@ function success(response) {
   let data = response.data;
 
   if(data.length === 0) {
-    $('#output').append(`<p>No matches found</p>`);
+    $('#error').text(`No matches found`);
+    $('.overlay').fadeIn(200);
   }
 
   for(let i = 0; i < data.length; i++) {
@@ -17,15 +18,9 @@ function success(response) {
     const zipCode = data[i].practices[0].visit_address.zip;
     const phone = data[i].practices[0].phones[0].number;
     let website = data[i].practices[0].website;
-    let newPatient = data[i].practices[0].accepts_new_patients;
+    let newPatient = (data[i].practices[0].accepts_new_patients? "Yes": "No");
 
-    if(newPatient === true) {
-      newPatient = 'Yes';
-    } else {
-      newPatient = 'No';
-    }
-
-    if(website === undefined) {
+    if(!website) {
       website = 'No website available';
     }
 
@@ -45,10 +40,12 @@ function success(response) {
 }
 
 function failure(error) {
-  $('#output').text(`<p>Something went wrong, please try again!</p>`);
+  $('#error').text(`Something went wrong, please try again!`);
+  $('.overlay').fadeIn(200);
 }
 
 $(document).ready(function() {
+  $('.overlay').hide();
   $('#doctor').submit(function(event) {
     event.preventDefault();
     $('#output').empty();
@@ -58,6 +55,10 @@ $(document).ready(function() {
     console.log(location);
 
     const docReq = getApi(meidcalIssue, doctorName, location, success, failure);
-    // console.log(meidcalIssue);
+  });//form submit
+
+  $('#alert-btn').click(function() {
+    $('.overlay').fadeOut(200);
   });
+
 });

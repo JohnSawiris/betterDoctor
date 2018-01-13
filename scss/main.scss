@@ -3,6 +3,47 @@
   margin: 0 auto;
 }
 
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.50);
+  z-index: 10000;
+  .alert-box {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    width: 50%;
+    padding: 1rem;
+    background-color: #fff;
+    margin: 15em auto 0;
+    height: 40%;
+    border-radius: 11px;
+    p#error {
+    text-align: center;
+    align-self: center;
+    margin: auto;
+    font-size: 2.2rem;
+    }
+    .btn-primary {
+      align-self: center;
+      margin-bottom: 20px;
+      width: 25%;
+    }
+  }
+}
+
 form#doctor {
   @include center(50%);
   .btn-danger {
@@ -23,6 +64,10 @@ form#doctor {
   padding: 1em;
   border-radius: 5px;
   box-shadow: 2px 4px 12px #aaa;
+  transition: box-shadow 0.3s ease-in;
+  &:hover {
+    box-shadow: 10px 12px 12px #aaa;
+  }
   .doc-info {
     margin-right: 20px;
     .bold {
