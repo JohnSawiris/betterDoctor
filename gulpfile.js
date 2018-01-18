@@ -8,7 +8,7 @@ var sass = require('gulp-sass');
 var jshint = require('gulp-jshint');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
-var browserSync = require('browser-sync');
+var browserSync = require('browser-sync').create();
 var lib = require('bower-files')({
   "overrides":{
     "bootstrap" : {
@@ -19,6 +19,15 @@ var lib = require('bower-files')({
       ]
     }
   }
+});
+
+gulp.task('serve', ['build'], function() {
+  browserSync.init({
+    server: {
+      baseDir: './',
+      index: 'index.html'
+    }
+  })
 });
 
 gulp.task('jsBrowserify', ['cssBuild'], function() {
@@ -55,4 +64,4 @@ gulp.task('cssBuild', function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('build', ['jsBrowserify', 'cssBuild']);
+gulp.task('build', ['jsBrowserify', 'cssBuild', 'bower']);
