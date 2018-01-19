@@ -41,6 +41,7 @@ function success(response) {
 
 function failure(error) {
   $('#error').text(`Something went wrong, please try again!`);
+  $('#output').text('Please try again');
   $('.overlay').fadeIn(200);
 }
 
